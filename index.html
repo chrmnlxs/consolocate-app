@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CONSOLOCATE - LCUP Campus Navigation</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
 </head>
 <body>
     <!-- Main Welcome Screen -->
@@ -54,8 +56,7 @@
                 <h2 class="page-title">Dashboard</h2>
             </div>
         </div>
-
-        <!-- Map Screen -->
+<!-- Map Screen -->
 <div class="screen" id="mapScreen">
     <div class="app-header">
         <div class="header-left">
@@ -68,23 +69,15 @@
         </div>
     </div>
 
-    <div style="
-        padding: 40px;
-        text-align: center;
-        min-height: calc(100vh - 85px);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        background: #f8fafc;
-    ">
-        <h2 style="font-size: 32px; color: #1e293b;">🗺️ Map Page</h2>
-        <p style="color: #64748b; font-size: 18px;">
-            Blank canvas.<br>
-            Your campus map will go here later.
-        </p>
+    <div style="height: calc(100vh - 85px); padding:10px;">
+        <div id="campusMap" style="
+            width:100%;
+            height:100%;
+            border-radius:12px;
+        "></div>
     </div>
 </div>
+
 
         <div class="dashboard-content">
             <div class="dashboard-hero">
