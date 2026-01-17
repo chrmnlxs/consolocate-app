@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONSOLOCATE - LCUP Campus Navigation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Main Welcome Screen -->
+    <div class="screen active" id="welcomeScreen">
+        <div class="welcome-container">
+            <div class="welcome-bg-pattern"></div>
+            <div class="welcome-content">
+                <div class="university-logo">
+                    <img src="download.png" alt="LCUP Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="logo-placeholder">
+                        <div class="logo-circle">
+                            <div class="logo-symbol">🎓</div>
+                        </div>
+                    </div>
+                </div>
+                <h1 class="main-title">ConsoLocate</h1>
+                <h2 class="subtitle"></h2>
+                <p class="tagline">La Consolacion University Philippines<br>Malolos, Bulacan</p>
+                <p class="motto">"Unitas • Caritas • Veritas"</p>
+                
+                <div class="welcome-actions">
+                    <button class="primary-btn" onclick="showScreen('dashboard')">
+                        <span class="btn-icon"></span>
+                        Start Navigation
+                    </button>
+                    <button class="secondary-btn" onclick="showAbout()">
+                        <span class="btn-icon">ℹ</span>
+                        About LCUP
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Screen -->
+    <div class="screen" id="dashboardScreen">
+        <div class="app-header">
+            <div class="header-left">
+                <div class="logo-mini">
+    <img src="download.png" alt="ConsoLocate Logo">
+</div>
+                <div class="header-title">
+                    <h3>ConsoLocate</h3>
+                    <span class="header-subtitle">LCUP Navigation</span>
+                </div>
+            </div>
+            <div class="header-center">
+                <h2 class="page-title">Dashboard</h2>
+            </div>
+            <div class="header-right">
+                <button class="header-btn" onclick="showScreen('welcome')">
+                    <span>🏠</span>
+                </button>
+                <button class="header-btn">
+                    <span>⚙️</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="dashboard-content">
+            <div class="dashboard-hero">
+                <div class="hero-card" onclick="showScreen('search')">
+                    <div class="hero-icon">🗺️</div>
+                    <div class="hero-content">
+                        <h3>Explore Campus Map</h3>
+                        <p>Navigate through LCUP's interactive 2D digital map with LED path guidance</p>
+                        <button class="hero-btn">Start Exploring →</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card" onclick="showScreen('search')">
+                    <div class="service-icon blue">
+                        <span>🏢</span>
+                    </div>
+                    <h4>Find Buildings</h4>
+                    <p>Search for buildings, offices, and classrooms</p>
+                </div>
+
+                <div class="service-card" onclick="showScreen('directory')">
+                    <div class="service-icon purple">
+                        <span>🎓</span>
+                    </div>
+                    <h4>Academic Programs</h4>
+                    <p>Browse colleges, departments, and courses</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon green">
+                        <span>📋</span>
+                    </div>
+                    <h4>Student Services</h4>
+                    <p>Registrar, admissions, and student affairs</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon orange">
+                        <span>🏛️</span>
+                    </div>
+                    <h4>Campus Facilities</h4>
+                    <p>Libraries, laboratories, and recreational areas</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon red">
+                        <span>🏥</span>
+                    </div>
+                    <h4>Support Services</h4>
+                    <p>Health center, counseling, and security</p>
+                </div>
+
+                <div class="service-card" onclick="showScreen('faqs')">
+                    <div class="service-icon teal">
+                        <span>❓</span>
+                    </div>
+                    <h4>Help & FAQs</h4>
+                    <p>Get assistance and find answers</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search and Filter Screen -->
+    <div class="screen" id="searchScreen">
+        <div class="app-header">
+            <div class="header-left">
+                <button class="back-button" onclick="showScreen('dashboard')">
+                    <span>←</span> Back
+                </button>
+            </div>
+            <div class="header-center">
+                <h2 class="page-title">Find a Location</h2>
+            </div>
+            <div class="header-right">
+                <button class="header-btn">
+                    <span>🔔</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="search-section">
+            <div class="search-wrapper">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-field" id="locationSearch" placeholder="Search buildings, offices, rooms..." oninput="filterLocations()">
+                <button class="search-clear" onclick="clearSearch()">✕</button>
+            </div>
+        </div>
+
+        <div class="filter-section">
+            <button class="filter-chip active" onclick="filterByTab('all')">
+                <span>📋</span> All Locations
+            </button>
+            <button class="filter-chip" onclick="filterByTab('admin')">
+                <span>🏛️</span> Administration
+            </button>
+            <button class="filter-chip" onclick="filterByTab('services')">
+                <span>🎯</span> Student Services
+            </button>
+            <button class="filter-chip" onclick="filterByTab('facilities')">
+                <span>🏢</span> Facilities
+            </button>
+            <button class="filter-chip" onclick="filterByTab('support')">
+                <span>💡</span> Support
+            </button>
+        </div>
+
+        <div class="results-container" id="locationsList">
+            <!-- Dynamically generated -->
+        </div>
+    </div>
+
+    <!-- Directory Screen -->
+    <div class="screen" id="directoryScreen">
+        <div class="app-header">
+            <div class="header-left">
+                <button class="back-button" onclick="showScreen('dashboard')">
+                    <span>←</span> Back
+                </button>
+            </div>
+            <div class="header-center">
+                <h2 class="page-title">Academic Directory</h2>
+            </div>
+            <div class="header-right">
+                <button class="header-btn">
+                    <span>🔍</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="directory-section">
+            <div class="section-header">
+                <h3>Colleges & Programs</h3>
+                <p>Explore our academic offerings</p>
+            </div>
+
+            <div class="colleges-container">
+                <div class="college-item" onclick="toggleCollege(this)">
+                    <div class="college-badge pink">
+                        <span class="college-num">1</span>
+                    </div>
+                    <div class="college-details">
+                        <h4>College of Nursing</h4>
+                        <p class="college-location">📍 Nursing Building, 2nd Floor</p>
+                        <div class="college-expand">
+                            <p class="college-programs">Programs: Bachelor of Science in Nursing (BSN), Master of Arts in Nursing (MAN)</p>
+                            <p class="college-dean">Dean: Dr. Maria Santos</p>
+                        </div>
+                    </div>
+                    <button class="expand-icon">▼</button>
+                </div>
+
+                <div class="college-item" onclick="toggleCollege(this)">
+                    <div class="college-badge blue">
+                        <span class="college-num">2</span>
+                    </div>
+                    <div class="college-details">
+                        <h4>College of Criminal Justice Education</h4>
+                        <p class="college-location">📍 Main Building, 3rd Floor</p>
+                        <div class="college-expand">
+                            <p class="college-programs">Programs: Bachelor of Science in Criminology</p>
+                            <p class="college-dean">Dean: Dr. Juan Dela Cruz</p>
+                        </div>
+                    </div>
+                    <button class="expand-icon">▼</button>
+                </div>
+
+                <div class="college-item" onclick="toggleCollege(this)">
+                    <div class="college-badge purple">
+                        <span class="college-num">3</span>
+                    </div>
+                    <div class="college-details">
+                        <h4>College of Computer Studies</h4>
+                        <p class="college-location">📍 IT Building, Ground Floor</p>
+                        <div class="college-expand">
+                            <p class="college-programs">Programs: BS Information Technology, BS Computer Science, BS Information Systems</p>
+                            <p class="college-dean">Dean: Prof. Ana Reyes</p>
+                        </div>
+                    </div>
+                    <button class="expand-icon">▼</button>
+                </div>
+
+                <div class="college-item" onclick="toggleCollege(this)">
+                    <div class="college-badge green">
+                        <span class="college-num">4</span>
+                    </div>
+                    <div class="college-details">
+                        <h4>College of Business & Management</h4>
+                        <p class="college-location">📍 Business Building, All Floors</p>
+                        <div class="college-expand">
+                            <p class="college-programs">Programs: BS Business Administration, BS Accountancy, BS Entrepreneurship</p>
+                            <p class="college-dean">Dean: Dr. Roberto Garcia</p>
+                        </div>
+                    </div>
+                    <button class="expand-icon">▼</button>
+                </div>
+
+                <div class="college-item" onclick="toggleCollege(this)">
+                    <div class="college-badge orange">
+                        <span class="college-num">5</span>
+                    </div>
+                    <div class="college-details">
+                        <h4>College of Education</h4>
+                        <p class="college-location">📍 Education Building, 1st-3rd Floor</p>
+                        <div class="college-expand">
+                            <p class="college-programs">Programs: Bachelor of Elementary Education, Bachelor of Secondary Education</p>
+                            <p class="college-dean">Dean: Dr. Teresa Aquino</p>
+                        </div>
+                    </div>
+                    <button class="expand-icon">▼</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQs Screen -->
+    <div class="screen" id="faqsScreen">
+        <div class="app-header">
+            <div class="header-left">
+                <button class="back-button" onclick="showScreen('dashboard')">
+                    <span>←</span> Back
+                </button>
+            </div>
+            <div class="header-center">
+                <h2 class="page-title">Help & Support</h2>
+            </div>
+        </div>
+
+        <div class="help-container">
+            <div class="help-intro">
+                <h3>How can we help you?</h3>
+                <p>Find answers to frequently asked questions</p>
+            </div>
+
+            <div class="help-quick-actions">
+                <button class="quick-action-card">
+                    <span class="qa-icon">💬</span>
+                    <span>Live Chat</span>
+                </button>
+                <button class="quick-action-card">
+                    <span class="qa-icon">📞</span>
+                    <span>Call Support</span>
+                </button>
+                <button class="quick-action-card">
+                    <span class="qa-icon">📧</span>
+                    <span>Email Us</span>
+                </button>
+            </div>
+
+            <div class="faq-container">
+                <h4 class="faq-title">Frequently Asked Questions</h4>
+
+                <div class="faq-card" onclick="toggleFaq(this)">
+                    <div class="faq-header">
+                        <span class="faq-q">Where is Room 201 located?</span>
+                        <span class="faq-arrow">▼</span>
+                    </div>
+                    <div class="faq-body">
+                        <p>Room 201 is located on the second floor of the Main Building, near the library entrance. Take the main staircase and turn right.</p>
+                    </div>
+                </div>
+
+                <div class="faq-card" onclick="toggleFaq(this)">
+                    <div class="faq-header">
+                        <span class="faq-q">How do I find my class schedule?</span>
+                        <span class="faq-arrow">▼</span>
+                    </div>
+                    <div class="faq-body">
+                        <p>Class schedules can be obtained from the Registrar's Office or accessed through the student portal online at portal.lcup.edu.ph</p>
+                    </div>
+                </div>
+
+                <div class="faq-card" onclick="toggleFaq(this)">
+                    <div class="faq-header">
+                        <span class="faq-q">What is CONSOLOCATE?</span>
+                        <span class="faq-arrow">▼</span>
+                    </div>
+                    <div class="faq-body">
+                        <p>CONSOLOCATE is an interactive 2D campus navigation system with LED path guidance, designed to help students, faculty, and visitors navigate La Consolacion University Philippines easily.</p>
+                    </div>
+                </div>
+
+                <div class="faq-card" onclick="toggleFaq(this)">
+                    <div class="faq-header">
+                        <span class="faq-q">Where is the Registrar's Office?</span>
+                        <span class="faq-arrow">▼</span>
+                    </div>
+                    <div class="faq-body">
+                        <p>The Registrar's Office is located in the Administration Building, Ground Floor, Room 105. Office hours are Monday to Friday, 8:00 AM - 5:00 PM.</p>
+                    </div>
+                </div>
+
+                <div class="faq-card" onclick="toggleFaq(this)">
+                    <div class="faq-header">
+                        <span class="faq-q">How do I use the LED path navigation?</span>
+                        <span class="faq-arrow">▼</span>
+                    </div>
+                    <div class="faq-body">
+                        <p>After selecting your destination, click "Show LED Path" to activate the physical LED lights on our 3D campus model. Follow the illuminated path from your current location to your destination.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <button class="fab" onclick="showScreen('welcome')" id="fabButton">
+        <span>🏠</span>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
