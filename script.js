@@ -1,128 +1,24 @@
 // Campus Locations Database
 const locations = [
-    {
-        id: 1,
-        name: "Main Administration Building",
-        description: "President's Office, Board Room, Executive Offices",
-        category: "admin",
-        floor: "All Floors",
-        contact: "(044) 791-0883"
-    },
-    {
-        id: 2,
-        name: "Registrar's Office",
-        description: "Enrollment, transcripts, academic records",
-        category: "admin",
-        floor: "Ground Floor, Admin Bldg",
-        contact: "registrar@lcup.edu.ph"
-    },
-    {
-        id: 3,
-        name: "College of Nursing Building",
-        description: "Nursing Department, Skills Lab, Faculty Offices",
-        category: "all",
-        floor: "1st-3rd Floor",
-        contact: "nursing@lcup.edu.ph"
-    },
-    {
-        id: 4,
-        name: "IT Building",
-        description: "Computer Studies, Computer Labs, Server Room",
-        category: "all",
-        floor: "Ground-3rd Floor",
-        contact: "computerlab@lcup.edu.ph"
-    },
-    {
-        id: 5,
-        name: "Business Building",
-        description: "Business Admin, Accountancy, Faculty Rooms",
-        category: "all",
-        floor: "1st-4th Floor",
-        contact: "business@lcup.edu.ph"
-    },
-    {
-        id: 6,
-        name: "Student Affairs Office",
-        description: "Student services, guidance, scholarships",
-        category: "services",
-        floor: "2nd Floor, Main Bldg",
-        contact: "studentaffairs@lcup.edu.ph"
-    },
-    {
-        id: 7,
-        name: "University Library",
-        description: "Books, digital resources, study areas",
-        category: "facilities",
-        floor: "Ground-2nd Floor",
-        contact: "library@lcup.edu.ph"
-    },
-    {
-        id: 8,
-        name: "Finance Office",
-        description: "Cashier, payments, financial aid",
-        category: "admin",
-        floor: "Ground Floor, Admin",
-        contact: "finance@lcup.edu.ph"
-    },
-    {
-        id: 9,
-        name: "Health & Wellness Center",
-        description: "Campus clinic, first aid, health services",
-        category: "support",
-        floor: "Ground Floor",
-        contact: "clinic@lcup.edu.ph"
-    },
-    {
-        id: 10,
-        name: "Cafeteria & Food Court",
-        description: "Student dining, food services, canteen",
-        category: "facilities",
-        floor: "Ground Floor",
-        contact: "N/A"
-    },
-    {
-        id: 11,
-        name: "Gymnasium & Sports Complex",
-        description: "Indoor sports, basketball court, fitness",
-        category: "facilities",
-        floor: "Ground Floor",
-        contact: "sports@lcup.edu.ph"
-    },
-    {
-        id: 12,
-        name: "Campus Security Office",
-        description: "Safety, security, lost and found",
-        category: "support",
-        floor: "Main Gate",
-        contact: "security@lcup.edu.ph"
-    },
-    {
-        id: 13,
-        name: "Chapel / Prayer Room",
-        description: "Campus ministry, religious activities",
-        category: "facilities",
-        floor: "2nd Floor, Main Bldg",
-        contact: "ministry@lcup.edu.ph"
-    },
-    {
-        id: 14,
-        name: "Guidance & Counseling Office",
-        description: "Student counseling, psychological support",
-        category: "services",
-        floor: "3rd Floor, Main Bldg",
-        contact: "guidance@lcup.edu.ph"
-    },
-    {
-        id: 15,
-        name: "Science Laboratories",
-        description: "Chemistry, Physics, Biology labs",
-        category: "all",
-        floor: "Science Building",
-        contact: "science@lcup.edu.ph"
-    }
+    { id: 1, name: "Main Administration Building", description: "President's Office, Board Room, Executive Offices", category: "admin", floor: "All Floors", contact: "(044) 791-0883" },
+    { id: 2, name: "Registrar's Office", description: "Enrollment, transcripts, academic records", category: "admin", floor: "Ground Floor, Admin Bldg", contact: "registrar@lcup.edu.ph" },
+    { id: 3, name: "College of Nursing Building", description: "Nursing Department, Skills Lab, Faculty Offices", category: "all", floor: "1st-3rd Floor", contact: "nursing@lcup.edu.ph" },
+    { id: 4, name: "IT Building", description: "Computer Studies, Computer Labs, Server Room", category: "all", floor: "Ground-3rd Floor", contact: "computerlab@lcup.edu.ph" },
+    { id: 5, name: "Business Building", description: "Business Admin, Accountancy, Faculty Rooms", category: "all", floor: "1st-4th Floor", contact: "business@lcup.edu.ph" },
+    { id: 6, name: "Student Affairs Office", description: "Student services, guidance, scholarships", category: "services", floor: "2nd Floor, Main Bldg", contact: "studentaffairs@lcup.edu.ph" },
+    { id: 7, name: "University Library", description: "Books, digital resources, study areas", category: "facilities", floor: "Ground-2nd Floor", contact: "library@lcup.edu.ph" },
+    { id: 8, name: "Finance Office", description: "Cashier, payments, financial aid", category: "admin", floor: "Ground Floor, Admin", contact: "finance@lcup.edu.ph" },
+    { id: 9, name: "Health & Wellness Center", description: "Campus clinic, first aid, health services", category: "support", floor: "Ground Floor", contact: "clinic@lcup.edu.ph" },
+    { id: 10, name: "Cafeteria & Food Court", description: "Student dining, food services, canteen", category: "facilities", floor: "Ground Floor", contact: "N/A" },
+    { id: 11, name: "Gymnasium & Sports Complex", description: "Indoor sports, basketball court, fitness", category: "facilities", floor: "Ground Floor", contact: "sports@lcup.edu.ph" },
+    { id: 12, name: "Campus Security Office", description: "Safety, security, lost and found", category: "support", floor: "Main Gate", contact: "security@lcup.edu.ph" },
+    { id: 13, name: "Chapel / Prayer Room", description: "Campus ministry, religious activities", category: "facilities", floor: "2nd Floor, Main Bldg", contact: "ministry@lcup.edu.ph" },
+    { id: 14, name: "Guidance & Counseling Office", description: "Student counseling, psychological support", category: "services", floor: "3rd Floor, Main Bldg", contact: "guidance@lcup.edu.ph" },
+    { id: 15, name: "Science Laboratories", description: "Chemistry, Physics, Biology labs", category: "all", floor: "Science Building", contact: "science@lcup.edu.ph" }
 ];
 
 let currentFilter = 'all';
+let campusMap; // Global map variable
 
 // Initialize application
 document.addEventListener('DOMContentLoaded', function() {
@@ -174,18 +70,23 @@ function showScreen(screenName) {
     }
 
     // Initialize screen-specific content
-if (screenName === 'search') {
-    renderLocations();
-}
+    if (screenName === 'search') {
+        renderLocations();
+    }
 
-// Initialize map screen
-if (screenName === 'map') {
-    initCampusMap();      // initialize map
-    campusMap.resize();   // ensures it fills the container correctly
-}
+    // Initialize map screen with TIMEOUT FIX
+    if (screenName === 'map') {
+        initCampusMap();
+        
+        // Wait for the CSS transition/display change to finish before resizing
+        setTimeout(() => {
+            if (campusMap) {
+                campusMap.resize();
+                console.log('🗺️ Map resized successfully');
+            }
+        }, 200); // 200ms delay helps prevent the blank canvas
+    }
 
-
-    // Log navigation
     console.log(`📱 Navigated to: ${screenName}`);
 }
 
@@ -225,42 +126,31 @@ function renderLocations() {
             </div>
         </div>
     `).join('');
-
-    console.log(`📊 Displaying ${filtered.length} locations`);
 }
 
 // Filter by Category Tab
 function filterByTab(category) {
     currentFilter = category;
-
-    // Update active state
     document.querySelectorAll('.filter-chip').forEach(chip => {
         chip.classList.remove('active');
     });
     event.target.classList.add('active');
-
-    // Re-render
     renderLocations();
 }
 
 // Search Filter Handler
-function filterLocations() {
-    renderLocations();
-}
+function filterLocations() { renderLocations(); }
 
 // Clear Search
 function clearSearch() {
-    const searchInput = document.getElementById('locationSearch');
-    searchInput.value = '';
+    document.getElementById('locationSearch').value = '';
     renderLocations();
 }
 
 // Select Location
 function selectLocation(id) {
     const location = locations.find(loc => loc.id === id);
-    
     if (location) {
-        // Create detailed modal or alert
         const message = `
 📍 ${location.name}
 
@@ -268,143 +158,38 @@ function selectLocation(id) {
 🏢 Location: ${location.floor}
 📞 Contact: ${location.contact}
 
-Would you like to see the LED path navigation?
-        `;
+Would you like to see the LED path navigation?`;
         
         if (confirm(message)) {
             alert('🎯 Activating LED path on 3D model...\n\nFollow the illuminated path on the physical campus model!');
         }
-        
-        console.log(`✅ Selected: ${location.name}`);
     }
 }
 
 // Toggle College Accordion
 function toggleCollege(element) {
     const item = element.closest('.college-item');
-    
-    // Close other items
     document.querySelectorAll('.college-item').forEach(c => {
-        if (c !== item) {
-            c.classList.remove('expanded');
-        }
+        if (c !== item) c.classList.remove('expanded');
     });
-
-    // Toggle current item
     item.classList.toggle('expanded');
 }
 
 // Toggle FAQ Accordion
 function toggleFaq(element) {
     const card = element.closest('.faq-card');
-    
-    // Close other FAQs
     document.querySelectorAll('.faq-card').forEach(f => {
-        if (f !== card) {
-            f.classList.remove('active');
-        }
+        if (f !== card) f.classList.remove('active');
     });
-
-    // Toggle current FAQ
     card.classList.toggle('active');
 }
 
 // Show About Modal
 function showAbout() {
-    const aboutMessage = `
-🎓 La Consolacion University Philippines
-Founded: 1937
-
-"Unitas • Caritas • Veritas"
-(Unity • Charity • Truth)
-
-Located in Malolos, Bulacan, LCUP is a prestigious Catholic educational institution dedicated to academic excellence and character formation.
-
-CONSOLOCATE is our state-of-the-art interactive campus navigation system featuring:
-• Interactive 3D digital map
-• LED path guidance on physical model
-• Real-time building and office location
-• Comprehensive college directory
-
-For more information, visit:
-📧 info@lcup.edu.ph
-📞 (044) 791-0883
-🌐 www.lcup.edu.ph
-    `;
-    
-    alert(aboutMessage);
+    alert(`🎓 La Consolacion University Philippines\nFounded: 1937\n\n"Unitas • Caritas • Veritas"\n\nCONSOLOCATE is our state-of-the-art interactive campus navigation system.`);
 }
-
-// Keyboard Shortcuts
-function setupKeyboardShortcuts() {
-    document.addEventListener('keydown', function(e) {
-        // H key - Home
-        if (e.key === 'h' || e.key === 'H') {
-            if (!e.ctrlKey && !e.altKey) {
-                showScreen('welcome');
-            }
-        }
-        
-        // D key - Dashboard
-        if (e.key === 'd' || e.key === 'D') {
-            if (!e.ctrlKey && !e.altKey) {
-                showScreen('dashboard');
-            }
-        }
-        
-        // Escape - Go back
-        if (e.key === 'Escape') {
-            const activeScreen = document.querySelector('.screen.active');
-            if (activeScreen && activeScreen.id !== 'welcomeScreen') {
-                showScreen('dashboard');
-            }
-        }
-    });
-    
-    console.log('⌨️ Keyboard shortcuts enabled: H (Home), D (Dashboard), ESC (Back)');
-}
-
-// Scroll Behavior
-function setupScrollBehavior() {
-    window.addEventListener('scroll', function() {
-        const fab = document.getElementById('fabButton');
-        if (fab && fab.classList.contains('visible')) {
-            if (window.scrollY > 200) {
-                fab.style.opacity = '1';
-            } else {
-                fab.style.opacity = '0.9';
-            }
-        }
-    });
-}
-
-// Utility: Smooth Scroll
-function smoothScrollTo(element) {
-    if (element) {
-        element.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
-    }
-}
-
-// Analytics (placeholder)
-function logAnalytics(action, data) {
-    console.log(`📊 Analytics: ${action}`, data);
-}
-
-// Export functions for debugging
-window.consolocate = {
-    showScreen,
-    locations,
-    currentFilter,
-    version: '1.0.0',
-    build: '2025-01-17'
-};
 
 // Initialize Campus Map
-let campusMap; // global variable for the map
-
 function initCampusMap() {
     if (campusMap) return; // avoid re-initializing
 
@@ -413,18 +198,17 @@ function initCampusMap() {
 
     // Initialize map
     campusMap = new mapboxgl.Map({
-        container: 'campusMap', // id ng div sa mapScreen
-        style: 'mapbox://styles/mapbox/streets-v12', // default style
-        center: [120.8280, 14.8444], // latitude, longitude ng LCUP, Malolos
-        zoom: 16 // adjust as needed
+        container: 'campusMap',
+        style: 'mapbox://styles/mapbox/streets-v12',
+        center: [120.8280, 14.8444], // LCUP Malolos Coordinates
+        zoom: 16
     });
 
-    // Add zoom and rotation controls
     campusMap.addControl(new mapboxgl.NavigationControl());
 
-    // Optional: Add markers from your `locations` array
+    // Add markers
     locations.forEach(loc => {
-        // For demo, randomly spread them a bit near campus
+        // Random spread for demo purposes (replace with real coordinates later)
         new mapboxgl.Marker()
             .setLngLat([120.8280 + (Math.random()-0.5)/500, 14.8444 + (Math.random()-0.5)/500])
             .setPopup(new mapboxgl.Popup({ offset: 25 })
@@ -434,5 +218,25 @@ function initCampusMap() {
 
     console.log('🗺️ Campus map initialized with markers');
 }
-console.log('✅ CONSOLOCATE ready for operation');
-console.log('💡 Type "consolocate" in console for system info');
+
+// Keyboard Shortcuts
+function setupKeyboardShortcuts() {
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'h' || e.key === 'H') { if (!e.ctrlKey && !e.altKey) showScreen('welcome'); }
+        if (e.key === 'd' || e.key === 'D') { if (!e.ctrlKey && !e.altKey) showScreen('dashboard'); }
+        if (e.key === 'Escape') {
+            const activeScreen = document.querySelector('.screen.active');
+            if (activeScreen && activeScreen.id !== 'welcomeScreen') showScreen('dashboard');
+        }
+    });
+}
+
+// Scroll Behavior
+function setupScrollBehavior() {
+    window.addEventListener('scroll', function() {
+        const fab = document.getElementById('fabButton');
+        if (fab && fab.classList.contains('visible')) {
+            fab.style.opacity = window.scrollY > 200 ? '1' : '0.9';
+        }
+    });
+}
