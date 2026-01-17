@@ -1,4 +1,4 @@
-* {
+    * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -235,7 +235,11 @@ body {
 
 /* ==================== APP HEADER ==================== */
 .app-header {
-    background: linear-gradient(to bottom, #1e9bd7 0%, #6fc3e6 40%, #bfe9f5 70%, #ffffff 100%);
+    background: linear-gradient(to bottom,
+    #0a6fb6 0%,
+    #1f8fd1 40%,
+    #4fb2e3 70%,
+    #7cc7eb 100%);
     padding: 20px 40px;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
