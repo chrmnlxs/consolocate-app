@@ -296,12 +296,6 @@ body {
     color: white;
 }
 
-.header-right {
-    display: flex;
-    gap: 10px;
-    justify-content: flex-end;
-}
-
 .header-btn {
     width: 45px;
     height: 45px;
