@@ -239,8 +239,7 @@ body {
     #0a6fb6 0%,
     #1f8fd1 40%,
     #4fb2e3 70%,
-    #7cc7eb 100%
-);
+    #7cc7eb 100%);
     padding: 20px 40px;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
@@ -258,11 +257,13 @@ body {
 }
 
 .logo-mini {
-    width: 70px;
-    height: 70px;;
+    width: 80px;
+    height: 80px;;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: -20px;
+    margin-right: 2px;
 }
 
 
@@ -290,7 +291,7 @@ body {
 }
 
 .page-title {
-    font-size: 24px;
+    font-size: 30px;
     font-weight: 700;
     color: white;
 }
