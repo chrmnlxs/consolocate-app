@@ -55,6 +55,37 @@
             </div>
         </div>
 
+        <!-- Map Screen -->
+<div class="screen" id="mapScreen">
+    <div class="app-header">
+        <div class="header-left">
+            <button class="back-button" onclick="showScreen('dashboard')">
+                <span>←</span> Back
+            </button>
+        </div>
+        <div class="header-center">
+            <h2 class="page-title">Campus Map</h2>
+        </div>
+    </div>
+
+    <div style="
+        padding: 40px;
+        text-align: center;
+        min-height: calc(100vh - 85px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background: #f8fafc;
+    ">
+        <h2 style="font-size: 32px; color: #1e293b;">🗺️ Map Page</h2>
+        <p style="color: #64748b; font-size: 18px;">
+            Blank canvas.<br>
+            Your campus map will go here later.
+        </p>
+    </div>
+</div>
+
         <div class="dashboard-content">
             <div class="dashboard-hero">
                 <div class="hero-card" onclick="showScreen('search')">
@@ -74,6 +105,14 @@
                     </div>
                     <h4>Find Buildings</h4>
                     <p>Search for buildings, offices, and classrooms</p>
+                </div>
+
+                <div class="service-card" onclick="showScreen('map')">
+                    <div class="service-icon blue">
+                        <span>🗺️</span>
+                    </div>
+                    <h4>Map</h4>
+                    <p>View and explore the campus map</p>
                 </div>
 
                 <div class="service-card" onclick="showScreen('directory')">

@@ -152,7 +152,8 @@ function showScreen(screenName) {
         'dashboard': 'dashboardScreen',
         'search': 'searchScreen',
         'directory': 'directoryScreen',
-        'faqs': 'faqsScreen'
+        'faqs': 'faqsScreen',
+        'map': 'mapScreen'
     };
 
     // Show selected screen
