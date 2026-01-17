@@ -174,9 +174,16 @@ function showScreen(screenName) {
     }
 
     // Initialize screen-specific content
-    if (screenName === 'search') {
-        renderLocations();
-    }
+if (screenName === 'search') {
+    renderLocations();
+}
+
+// Initialize map screen
+if (screenName === 'map') {
+    initCampusMap();      // initialize map
+    campusMap.resize();   // ensures it fills the container correctly
+}
+
 
     // Log navigation
     console.log(`📱 Navigated to: ${screenName}`);
@@ -395,5 +402,37 @@ window.consolocate = {
     build: '2025-01-17'
 };
 
+// Initialize Campus Map
+let campusMap; // global variable for the map
+
+function initCampusMap() {
+    if (campusMap) return; // avoid re-initializing
+
+    // Mapbox access token
+    mapboxgl.accessToken = 'pk.eyJ1IjoiYXlvd21paCIsImEiOiJjbWo1eW5yMm4wOWozM2ZwdWp5bGJvbmJ5In0.P2OctDtdjbLsVMVMcVLjrw';
+
+    // Initialize map
+    campusMap = new mapboxgl.Map({
+        container: 'campusMap', // id ng div sa mapScreen
+        style: 'mapbox://styles/mapbox/streets-v12', // default style
+        center: [120.8280, 14.8444], // latitude, longitude ng LCUP, Malolos
+        zoom: 16 // adjust as needed
+    });
+
+    // Add zoom and rotation controls
+    campusMap.addControl(new mapboxgl.NavigationControl());
+
+    // Optional: Add markers from your `locations` array
+    locations.forEach(loc => {
+        // For demo, randomly spread them a bit near campus
+        new mapboxgl.Marker()
+            .setLngLat([120.8280 + (Math.random()-0.5)/500, 14.8444 + (Math.random()-0.5)/500])
+            .setPopup(new mapboxgl.Popup({ offset: 25 })
+                .setHTML(`<h4>${loc.name}</h4><p>${loc.description}</p>`))
+            .addTo(campusMap);
+    });
+
+    console.log('🗺️ Campus map initialized with markers');
+}
 console.log('✅ CONSOLOCATE ready for operation');
 console.log('💡 Type "consolocate" in console for system info');
