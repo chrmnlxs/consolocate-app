@@ -236,10 +236,10 @@ body {
 /* ==================== APP HEADER ==================== */
 .app-header {
     background: linear-gradient(to bottom,
-    #0a6fb6 0%,
-    #1f8fd1 40%,
-    #4fb2e3 70%,
-    #7cc7eb 100%);
+    #055e9e 0%,
+    #137bb8 40%,
+    #2891c5 70%,
+    #47a4cf 100%);
     padding: 20px 40px;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
