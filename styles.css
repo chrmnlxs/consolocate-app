@@ -216,7 +216,7 @@ body {
 .dashboard-hero { margin-bottom: 40px; }
 
 .hero-card {
-    background-image: url("321.png");
+    background-image: url("students-blue-bg.png");
     background-repeat: no-repeat;
     border-radius: 24px; padding: 50px;
     display: flex; align-items: center; gap: 40px;
