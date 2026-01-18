@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="screen active" id="welcomeScreen">
@@ -71,12 +74,6 @@
                     <div class="service-icon blue"><span>🏢</span></div>
                     <h4>Find Buildings</h4>
                     <p>Search for buildings, offices, and classrooms</p>
-                </div>
-
-                <div class="service-card" onclick="showScreen('map')">
-                    <div class="service-icon blue"><span>🗺️</span></div>
-                    <h4>Map</h4>
-                    <p>View and explore the campus map</p>
                 </div>
 
                 <div class="service-card" onclick="showScreen('directory')">
@@ -238,7 +235,7 @@
     </div>
 
     <button class="fab" onclick="showScreen('welcome')" id="fabButton">
-        <span>🏠</span>
+        <span>←</span>
     </button>
 
     <script src="script.js"></script>
