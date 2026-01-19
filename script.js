@@ -189,35 +189,54 @@ function showAbout() {
     alert(`🎓 La Consolacion University Philippines\nFounded: 1937\n\n"Unitas • Caritas • Veritas"\n\nCONSOLOCATE is our state-of-the-art interactive campus navigation system.`);
 }
 
-// Initialize Campus Map
+/* ==========================================================================
+        La Consolacion Map
+   ========================================================================== */
 function initCampusMap() {
     if (campusMap) return; // avoid re-initializing
 
-    // Mapbox access token
+    // 1. Set Mapbox Token
     mapboxgl.accessToken = 'pk.eyJ1IjoiYXlvd21paCIsImEiOiJjbWo1eW5yMm4wOWozM2ZwdWp5bGJvbmJ5In0.P2OctDtdjbLsVMVMcVLjrw';
 
-    // Initialize map
+    // 2. DEFINE BOUNDS
+    const lcupBounds = [
+        [120.8115, 14.8521], // Southwest Coordinates 
+        [120.8145, 14.8545]  // Northeast Coordinates 
+    ];
+
+    // 3. Initialize Map with Restrictions
     campusMap = new mapboxgl.Map({
         container: 'campusMap',
-        style: 'mapbox://styles/mapbox/streets-v12',
-        center: [120.8280, 14.8444], // LCUP Malolos Coordinates
-        zoom: 16
+        style: 'mapbox://styles/mapbox/streets-v12', 
+        center: [120.8129, 14.8532], 
+        zoom: 17.5,                  
+        minZoom: 16.5,               
+        maxZoom: 20,
+        pitch: 50,                   
+        maxBounds: lcupBounds,       
+        antialias: true
     });
 
     campusMap.addControl(new mapboxgl.NavigationControl());
 
-    // Add markers
+    // 4. Load Custom 3D Buildings
+    campusMap.on('load', () => {
+        console.log('🏗️ Map loaded within LCUP bounds');
+    });
+
+    // Add Markers
     locations.forEach(loc => {
-        // Random spread for demo purposes (replace with real coordinates later)
+        const lng = 120.8120 + (Math.random() * 0.0015);
+        const lat = 14.8525 + (Math.random() * 0.0010);
+        
         new mapboxgl.Marker()
-            .setLngLat([120.8280 + (Math.random()-0.5)/500, 14.8444 + (Math.random()-0.5)/500])
+            .setLngLat([lng, lat]) 
             .setPopup(new mapboxgl.Popup({ offset: 25 })
                 .setHTML(`<h4>${loc.name}</h4><p>${loc.description}</p>`))
             .addTo(campusMap);
     });
-
-    console.log('🗺️ Campus map initialized with markers');
 }
+/* ========================================================================== */
 
 // Keyboard Shortcuts
 function setupKeyboardShortcuts() {
