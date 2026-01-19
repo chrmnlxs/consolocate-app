@@ -209,9 +209,9 @@ function initCampusMap() {
         container: 'campusMap',
         style: 'mapbox://styles/mapbox/satellite-streets-v12', 
         center: [120.8129, 14.8532], 
-        zoom: 18,                  
-        minZoom: 17,               
-        maxZoom: 22,
+        zoom: 24,                  
+        minZoom: 19,               
+        maxZoom: 19,
         pitch: 50,                   
         maxBounds: lcupBounds,       
         antialias: true
