@@ -207,11 +207,11 @@ function initCampusMap() {
     // 3. Initialize Map with Restrictions
     campusMap = new mapboxgl.Map({
         container: 'campusMap',
-        style: 'mapbox://styles/mapbox/satellite-streets-v12', 
+        style: 'mapbox://styles/mapbox/streets-v12', 
         center: [120.8129, 14.8532], 
         zoom: 24,                  
-        minZoom: 19,               
-        maxZoom: 19,
+        minZoom: 17,               
+        maxZoom: 22,
         pitch: 50,                   
         maxBounds: lcupBounds,       
         antialias: true
