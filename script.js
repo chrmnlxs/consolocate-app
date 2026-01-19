@@ -212,7 +212,7 @@ function initCampusMap() {
         zoom: 26,                  
         minZoom: 17,               
         maxZoom: 25,
-        pitch: 50,                   
+        pitch: 0,                   
         maxBounds: lcupBounds,       
         antialias: true
     });
