@@ -14,6 +14,7 @@
 
 </head>
 <body>
+    <!-- WELCOME SCREEN -->
     <div class="screen active" id="welcomeScreen">
         <div class="welcome-container">
             <div class="welcome-bg-pattern"></div>
@@ -44,6 +45,7 @@
         </div>
     </div>
 
+    <!-- DASHBOARD SCREEN -->
     <div class="screen" id="dashboardScreen">
         <div class="app-header">
             <div class="header-left">
@@ -62,7 +64,8 @@
 
         <div class="dashboard-content">
             <div class="dashboard-hero">
-                <div class="hero-card" onclick="showScreen('map')"> <div class="hero-icon">🗺️</div>
+                <div class="hero-card" onclick="showScreen('map')">
+                    <div class="hero-icon">🗺️</div>
                     <div class="hero-content">
                         <h3>Explore Campus Map</h3>
                         <p>Navigate through LCUP's interactive 2D digital map with LED path guidance</p>
@@ -91,7 +94,7 @@
                 </div>
 
                 <div class="service-card">
-                    <div class="service-icon orange"><span>🏛️</span></div>
+                    <div class="service-icon orange"><span>�️</span></div>
                     <h4>Campus Facilities</h4>
                     <p>Libraries, laboratories, and recreational areas</p>
                 </div>
@@ -107,10 +110,113 @@
                     <h4>Help & FAQs</h4>
                     <p>Get assistance and find answers</p>
                 </div>
+
+                <!-- NEW: Admin Login Card -->
+                <div class="service-card" onclick="showScreen('login')">
+                    <div class="service-icon" style="background: linear-gradient(135deg, #6366f1, #4f46e5);"><span>🔐</span></div>
+                    <h4>Admin Login</h4>
+                    <p>Manage campus locations and data</p>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- NEW: LOGIN SCREEN -->
+    <div class="screen" id="loginScreen">
+        <div class="app-header">
+            <div class="header-left">
+                <button class="back-button" onclick="showScreen('dashboard')">
+                    <span>←</span> Back
+                </button>
+            </div>
+            <div class="header-center">
+                <h2 class="page-title">Admin Login</h2>
+            </div>
+        </div>
+
+        <div class="login-container">
+            <div class="login-card">
+                <div class="login-icon">🔐</div>
+                <h3>Administrator Access</h3>
+                <p>Enter your credentials to manage campus data</p>
+                
+                <form onsubmit="handleLogin(event)" class="login-form">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" placeholder="Enter username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter password" required>
+                    </div>
+                    <button type="submit" class="login-btn">Sign In</button>
+                    <p class="login-hint">Default: admin / admin123</p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW: ADMIN PANEL SCREEN -->
+    <div class="screen" id="adminScreen">
+        <div class="app-header">
+            <div class="header-left">
+                <button class="back-button" onclick="handleLogout()">
+                    <span>←</span> Logout
+                </button>
+            </div>
+            <div class="header-center">
+                <h2 class="page-title">Building Management</h2>
+            </div>
+            <div class="header-right">
+                <!-- Add button removed - editing existing buildings only -->
+            </div>
+        </div>
+
+        <div class="admin-content">
+            <div class="admin-stats">
+                <div class="stat-card">
+                    <div class="stat-icon blue">🏢</div>
+                    <div class="stat-info">
+                        <h4 id="totalLocations">0</h4>
+                        <p>Total Locations</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon green">📍</div>
+                    <div class="stat-info">
+                        <h4 id="totalCategories">5</h4>
+                        <p>Categories</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon orange">👤</div>
+                    <div class="stat-info">
+                        <h4>Admin</h4>
+                        <p>Current User</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Building Name</th>
+                            <th>Description</th>
+                            <th>Offices/Rooms</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminTableBody">
+                        <!-- Dynamic content -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAP SCREEN -->
     <div class="screen" id="mapScreen">
         <div class="app-header">
             <div class="header-left">
@@ -123,11 +229,46 @@
             </div>
         </div>
 
-        <div style="height: calc(100vh - 85px); padding:10px; width: 100%;">
+        <div class="map-container">
             <div id="campusMap"></div>
+            
+            <!-- NEW: Building Details Panel -->
+            <div id="buildingPanel" class="building-panel">
+                <button class="panel-close" onclick="closeBuildingPanel()">✕</button>
+                <div class="panel-content">
+                    <div class="panel-image">
+                        <img id="panelImage" src="" alt="Building Image" onerror="this.src='images/placeholder-building.jpg'">
+                        <div class="panel-qr">
+                            <div class="qr-placeholder">
+                                <p>SCAN ME</p>
+                                <p style="font-size: 12px; margin-top: 5px;">FOR MOBILE VIEW</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-info">
+                        <h3 id="panelName">Building Name</h3>
+                        <p id="panelDescription">Description</p>
+                        
+                        <!-- Floor Navigation Tabs -->
+                        <div class="floor-tabs" id="floorTabs">
+                            <!-- Floor tabs will be dynamically generated -->
+                        </div>
+                        
+                        <!-- Floor Details -->
+                        <div class="floor-details" id="floorDetails">
+                            <!-- Floor content will be dynamically generated -->
+                        </div>
+                        
+                        <button class="panel-navigate-btn" onclick="activateLEDPath()">
+                            🎯 Activate LED Path
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
+    <!-- SEARCH SCREEN -->
     <div class="screen" id="searchScreen">
         <div class="app-header">
             <div class="header-left">
@@ -153,16 +294,17 @@
 
         <div class="filter-section">
             <button class="filter-chip active" onclick="filterByTab('all')"><span>📋</span> All Locations</button>
-            <button class="filter-chip" onclick="filterByTab('admin')"><span>🏛️</span> Administration</button>
+            <button class="filter-chip" onclick="filterByTab('admin')"><span>🛏️</span> Administration</button>
             <button class="filter-chip" onclick="filterByTab('services')"><span>🎯</span> Student Services</button>
             <button class="filter-chip" onclick="filterByTab('facilities')"><span>🏢</span> Facilities</button>
             <button class="filter-chip" onclick="filterByTab('support')"><span>💡</span> Support</button>
         </div>
 
         <div class="results-container" id="locationsList">
-            </div>
+        </div>
     </div>
 
+    <!-- DIRECTORY SCREEN -->
     <div class="screen" id="directoryScreen">
         <div class="app-header">
             <div class="header-left">
@@ -196,10 +338,11 @@
                     </div>
                     <button class="expand-icon">▼</button>
                 </div>
-                </div>
+            </div>
         </div>
     </div>
 
+    <!-- FAQS SCREEN -->
     <div class="screen" id="faqsScreen">
         <div class="app-header">
             <div class="header-left">
@@ -232,12 +375,58 @@
                         <p>Room 201 is located on the second floor of the Main Building.</p>
                     </div>
                 </div>
-                </div>
+            </div>
         </div>
     </div>
 
+    <!-- NEW: EDIT MODAL -->
+    <div id="editModal" class="modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h3 id="modalTitle">Edit Building Information</h3>
+                <button class="modal-close" onclick="closeModal()">✕</button>
+            </div>
+            <form onsubmit="return saveBuildingInfo(event)" class="modal-form">
+                <input type="hidden" id="editId">
+                
+                <!-- Building Basic Info -->
+                <div class="form-section">
+                    <h4 class="section-title">Basic Information</h4>
+                    <div class="form-group">
+                        <label for="editName">Building Name *</label>
+                        <input type="text" id="editName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editDescription">Description *</label>
+                        <textarea id="editDescription" rows="2" required></textarea>
+                    </div>
+                </div>
+
+                <!-- Floor Management -->
+                <div class="form-section">
+                    <div class="section-header-with-btn">
+                        <h4 class="section-title">Floor Management</h4>
+                        <button type="button" class="btn-add-floor" onclick="addFloorInput()">
+                            <span>+</span> Add Floor
+                        </button>
+                    </div>
+                    
+                    <div id="floorsContainer" class="floors-container">
+                        <!-- Floors will be dynamically added here -->
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- FAB -->
     <button class="fab" onclick="showScreen('welcome')" id="fabButton">
-        <span>←</span>
+        <span>↺</span>
     </button>
 
     <script src="script.js"></script>
