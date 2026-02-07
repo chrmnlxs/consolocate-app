@@ -44,7 +44,7 @@ body {
 /* ==================== WELCOME SCREEN ==================== */
 .welcome-container {
     min-height: 100vh;
-    background-image: url("background2.png");
+    background-image: url("images/background2.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -205,7 +205,7 @@ body {
 
 /* ==================== DASHBOARD ==================== */
 #dashboardScreen{
-    background-image: url("lcup-white-bg.png");
+    background-image: url("images/lcup-white-bg.png");
     background-repeat: no-repeat;     
     background-size: cover;          
     background-position: center;     
@@ -216,7 +216,7 @@ body {
 .dashboard-hero { margin-bottom: 40px; }
 
 .hero-card {
-    background-image: url("students-blue-bg.png");
+    background-image: url("images/students-blue-bg.png");
     background-repeat: no-repeat;
     border-radius: 24px; padding: 50px;
     display: flex; align-items: center; gap: 40px;
